@@ -49,11 +49,11 @@ def fuzz_params(get_file, post_file, cookie):
             "-w", f"{config.PARAM_FILE}:PARAM",
             "-w", f"{get_file}:PATH",
             "-u", f"{config.URL}PATH?PARAM=1",
-            "-recursion",
-            "-recursion-depth", f"3",
-            "-X", "GET",
+            "-mc", "200-400",
+            "-v",
+            "-t", "50",
+            "-rate", "100",
             "-H", f"Cookie: {cookie}",
-            "-mc", "200-499",
             "-o", config.FFUF_GET_WORDLIST_JSON,
             "-of", "json"
         ])
@@ -66,12 +66,13 @@ def fuzz_params(get_file, post_file, cookie):
             "-w", f"{post_file}:PATH",
             "-u", f"{config.URL}PATH",
             "-X", "POST",
-            "-d", '{"PARAM": "1"}',
+            "-d", '{\"PARAM\": \"1\"}',
             "-H", "Content-Type: application/json",
-            "-recursion",
-            "-recursion-depth", f"3",
+            "-mc", "200-500",
+            "-v",
+            "-t", "50",
+            "-rate", "100",
             "-H", f"Cookie: {cookie}",
-            "-mc", "200-499",
             "-o", config.FFUF_POST_WORDLIST_JSON,
             "-of", "json"
         ])
@@ -120,4 +121,5 @@ def main():
     fuzz_params(config.GET_FILE_WORDLIST, config.POST_FILE_WORDLIST, cookie)
 
 if __name__ == "__main__":
-    main()
+    main()
+
