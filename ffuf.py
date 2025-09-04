@@ -129,8 +129,8 @@ def main():
             "-u", f"{base_url}PATH?PARAM=1",
             "-mc", "200-400",
             "-v",
-            "-t", "5",
-            "-rate", "5",
+            "-t", "50",
+            "-rate", "100",
             "-H", f"Cookie: {COOKIE}",
             "-o", config.FFUF_GET_JSON,
             "-of", "json"
@@ -148,8 +148,8 @@ def main():
             "-H", "Content-Type: application/json",
             "-mc", "200-500",
             "-v",
-            "-t", "5",
-            "-rate", "5",
+            "-t", "50",
+            "-rate", "100",
             "-H", f"Cookie: {COOKIE}",
             "-o", config.FFUF_POST_JSON,
             "-of", "json"
@@ -157,3 +157,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
